@@ -1,0 +1,143 @@
+node 安装后  需要配置两个
+   npm  enable   配置所需要的包
+   langnger
+
+模块化：
+ -seajs cmd   requirejs amd
+
+ -commonjs规范
+
+ 优点： 基于javascript语言。
+
+    ( 用多线程写的   但是js是单线程的（主线程） )
+
+什么是回调：
+  先读文件 读后写入文件
+
+  异步：非阻塞是实现异步的前提条件
+
+
+  事件环：
+
+在js文件中直接访问 this 不是 global
+
+(function(){
+  console.log (this)     global
+})()
+
+
+var a=100
+console.log(a)   underfind
+所以定义时  用 global.a=100  或者 a=100
+
+
+console.log( this===module.exports)
+ this = module.exports = exports = {}
+
+ 全局对象
+  在所有地方都可以访问的：
+   global.console.log()
+          process  进程
+          buffer  缓存
+          clearImmediate
+
+          setTimeout
+          setImmediate
+
+
+  global.console.error();输出 错误
+  global.console.info();     信息
+  global.console.log();      日志
+  global.console.warn();     警告
+
+
+  console.time('start')
+  console.timeEnd('start')计算时间差 start 是一个字符串  可以用其他的
+
+   当前文件的绝对路径 不是global的属性  在函数中直接访问的变量： global的属性 和 形参
+   在文件外面执行的时候会自动包一个函数；
+  global.console.log(__filename);
+
+  --------------------------------------------------------------------------
+    在文件中，当执行 global.console.log(__filename)时 相当于   默认包裹了 一个闭包 并传递了 5 个参数； 如下：
+  （注意只能在文件中，在命令行中 不能打印出来 会报错）；
+  (function(require,exports,module,__filename,__dirname,){ //这5个都不是全局变量
+             但可以在文件中访问到 形参
+          global.console.log(__filename)
+
+  })()
+  -----------------------------------------------------------------------------
+  function fn(b,e){
+      console.log('setTimeout',b,e)
+  }
+
+    setTimeout(fn , 2000, 100, 200)
+
+  -------------------------------------------------
+  setImmediate 是一个异步方法  并且后面不能指定事件
+    setImmediate(function(){
+      console.log(setImmediate)
+    })
+
+     setTimeout(function(){
+          console.log(setTimeout)
+        })
+
+
+  在 setTimeout 没有给时间的时候  setImmediate 是给setTimeout 一些机会的
+
+  global.process.nextTick(function(){
+  console.log(nextTick)  //服务员有两个小本 在第一个小本的底部
+  })
+  nextTick > setImmediate >  setTimeout >io
+    都是异步方法  快慢顺序
+
+  ---------------------------------------------------------------------------
+  process:
+    cwd:
+
+   process.swd() //当前工作目录 在哪里执行 可以改变
+   console.log(__dirname)
+
+
+
+   process.chdr('..') // /当前工作目录 不可以改变
+   console.log(__dirname)
+
+ -------------------------------------------------------
+  js不足：
+     没有模块    没有封作用域    依赖管理（用什么必须引入）
+     没有标准库 没有api
+     没有管理包系统
+
+
+  commonjs规范
+      一个node.js由大量的模块组成
+
+   模块化有点：
+
+   require语法 都是 同步的  能直接通过返回值拿到内容是同步的
+
+ ---------------------------------------
+   通过路径可以在一个模块调用另一个模块？
+
+
+   多次引用一个模块 不会被重复加载
+   会将加载的模块缓存
+
+   console,log(cache) //根据绝对路径进行缓存
+   //想删除缓存 构建一个绝对路径  通过路径去对象中查找  删除掉对应的模块
+
+   通过名字 构造出一个绝对路径来
+   console。log(require(resolve('./cahe.js')))
+
+
+
+   nodeppt  学会markdown
+
+   nodeppt start
+---------------------
+文件夹   1.md
+ npm -
+
+

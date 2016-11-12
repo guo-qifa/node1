@@ -1,0 +1,30 @@
+1 主流框架
+
+  post请求无法用浏览器请求实现
+  可以用 gitbush 在桌面 打开git 命令行
+   输入：$ curl -X POST http://localhost:9090/login
+
+1 2.2 永久指定代理
+  npm config set registry "http://172.18.0.199"
+
+  2.3 使用nrm动态切换代理
+ --------------------------------------------------------- 当安装慢时 可以使用内网
+  npm install nrm -g                   安 装
+  nrm add zhufeng http://172.18.0.199  增加一个源     珠峰源
+  nrm use zhufeng                      切换一个源     使用珠峰内网
+
+
+  测试哪个代理最快
+  nrm test
+     zhufeng  303ms
+     taobao   433ms
+    .............
+
+    nrm use zhufeng  看时间 用测试到的网络台 eg: zhufeng
+    nrm use zhufeng  使用珠峰内网
+
+  nrm ls
+     罗列出所有的源  *号在哪里    就在哪个源
+
+
+    --------------------------------------------------------------结束

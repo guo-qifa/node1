@@ -1,0 +1,5 @@
+/*
+* node
+*
+* */
+var EventEmitter=require
